@@ -1089,27 +1089,99 @@ npm run dev (runs all apps in dev mode)
 
 ## 📊 PROJECT TIMELINE
 
+### Development Phases (Detailed Milestones)
+
 ```
-Month 1: Foundation & Setup (Weeks 1-4)
-├── Week 1: Infrastructure & Setup
-├── Week 2: Authentication & Design System
-├── Week 3: Core Dashboard & Expenses
-└── Week 4: Budgeting & Lists
+MONTH 1: Foundation & UI (Weeks 1-2)
+├── M1 Week 1-2: WebView UI & Pages [✅ COMPLETED]
+│   ├── Monorepo setup (Turborepo)
+│   ├── 9 functional pages with Tailwind CSS
+│   ├── Redux store configuration
+│   ├── React Native shell with Expo
+│   └── Documentation: .github/copilot-instructions1.md
 
-Month 2: Optimization & Enhancement (Weeks 5-8)
-├── Week 5: Mobile Integration & Offline
-├── Week 6: Sync & Real-time Updates
-├── Week 7: Testing & Bug Fixes
-└── Week 8: Deployment & Launch
+MONTH 2: Firebase Backend (Weeks 3-8)
+├── M2 Week 1-2: Firebase Setup & Authentication [→ NEXT]
+│   ├── Firebase project configuration
+│   ├── Authentication (Email, Google, Apple)
+│   ├── Firestore database schema
+│   └── Documentation: .github/copilot-instructions2.md
+│
+├── M2 Week 3-4: CRUD & Data Integration
+│   ├── Firestore services implementation
+│   ├── React Query hooks setup
+│   ├── Redux async thunks
+│   └── All pages connected to real data
+│
+└── M2 Week 5-6: Testing & Offline Support
+    ├── Offline-first capability
+    ├── Real-time sync implementation
+    ├── Unit & integration tests
+    └── Error handling & validation
 
-Month 3: Polish & Features (Weeks 9-12)
-├── Week 9: Analytics & Reports
-├── Week 10: Receipt Management
-├── Week 11: User Testing & Feedback
-└── Week 12: Performance & Security
+MONTH 3: Advanced Features (Weeks 9-13)
+├── M3 Week 1-2: Analytics & Reports [→ PLANNED]
+│   ├── Chart implementation (Recharts)
+│   ├── Analytics calculations
+│   ├── Export to CSV/PDF
+│   └── Documentation: .github/copilot-instructions3.md
+│
+├── M3 Week 3-4: Mobile Integration & Performance
+│   ├── Receipt management
+│   ├── Mobile-native bridge
+│   ├── Biometric authentication
+│   ├── Camera integration
+│   └── Performance optimization
 
-Total: 12 weeks (3 months) for MVP + Core Features
+└── M3 Week 5-6: Budgeting & Testing
+    ├── Recurring expenses
+    ├── Budget alerts
+    ├── Advanced budgeting features
+    └── Performance profiling
+
+MONTH 4: Premium Features (Weeks 14-18)
+├── M4 Week 1-2: Shared Budgets & Collaboration [→ PLANNED]
+│   ├── Shared budget creation
+│   ├── Member management
+│   ├── Expense splitting
+│   ├── Settlement calculations
+│   └── Documentation: .github/copilot-instructions4.md
+│
+├── M4 Week 3-4: AI & Advanced Analytics
+│   ├── Spending pattern analysis
+│   ├── Budget optimization
+│   ├── Predictive forecasting
+│   ├── Auto-categorization
+│   └── Intelligent recommendations
+│
+└── M4 Week 5-6: Integrations & Premium
+    ├── Bank integration (Plaid - optional)
+    ├── Transaction matching
+    ├── Advanced insights
+    └── Comprehensive testing
+
+MONTH 5: Deployment & Launch (Weeks 19-21)
+└── M5 Week 1-3: Production Launch [→ PLANNED]
+    ├── Build pipeline & CI/CD
+    ├── iOS & Android app builds
+    ├── Vercel web deployment
+    ├── Firebase production setup
+    ├── Monitoring & analytics
+    ├── Security & compliance
+    ├── App store submissions
+    ├── Documentation: .github/copilot-instructions5.md
+    └── Post-launch support
+
+TOTAL TIMELINE: 16-21 weeks (4-5 months) for production-ready app
 ```
+
+### Quick Reference: Milestone Documentation
+- **M1 (UI):** `.github/copilot-instructions1.md` - Completed
+- **M2 (Backend):** `.github/copilot-instructions2.md` - Next milestone
+- **M3 (Advanced):** `.github/copilot-instructions3.md` - Planned
+- **M4 (Premium):** `.github/copilot-instructions4.md` - Planned
+- **M5 (Launch):** `.github/copilot-instructions5.md` - Planned
+- **Master Map:** `.github/ROADMAP.md` - Complete development roadmap
 
 ---
 
@@ -1141,14 +1213,36 @@ Total: 12 weeks (3 months) for MVP + Core Features
 
 ## 📝 NEXT STEPS
 
-1. **Review & Approve** this plan
-2. **Set up development environment** (see commands above)
-3. **Create GitHub repository** with monorepo structure
-4. **Configure Firebase project**
-5. **Begin Phase 1 implementation**
-6. **Daily standups** (if team)
-7. **Sprint planning** (1-week sprints)
-8. **Continuous deployment** pipeline setup
+### Immediate Actions
+1. ✅ **Milestone 1 Complete:** Review `.github/copilot-instructions1.md` for completed work
+2. 📋 **Start Milestone 2:** Open `.github/copilot-instructions2.md`
+3. 🔧 **Setup Firebase:** Follow M2 Phase 1 tasks
+4. 🚀 **Begin Development:** Pick tasks in order from M2 checklist
+5. 📊 **Track Progress:** Use GitHub issues linked to milestones
+
+### Development Workflow
+1. Read milestone documentation (`.github/copilot-instructions#.md`)
+2. Create GitHub issues for each task section
+3. Follow the detailed task breakdown
+4. Update checklist as you progress
+5. Commit with meaningful messages
+6. Create PR when section is complete
+7. Move to next milestone when complete
+
+### Recommended Approach
+```
+Week 1: Read all milestone docs (.github/copilot-instructions*.md)
+Week 2-3: Complete M2 Phase 1 (Firebase Auth)
+Week 4-5: Complete M2 Phase 2 (Firestore Integration)
+Week 6-7: Complete M2 Phase 3-5 (Pages + Testing)
+Then: Continue with M3, M4, M5...
+```
+
+### Important Resources
+- **Detailed Milestones:** `.github/copilot-instructions2.md` through `.github/copilot-instructions5.md`
+- **Complete Roadmap:** `.github/ROADMAP.md`
+- **Architecture Guide:** `.github/copilot-instructions.md`
+- **Project Plan:** This file (`PROJECT_PLAN.md`)
 
 ---
 
@@ -1174,16 +1268,61 @@ Total: 12 weeks (3 months) for MVP + Core Features
 
 ---
 
+## 🎯 MILESTONE STRUCTURE
+
+### Overview
+The FundTrack project is divided into 5 sequential milestones, each with comprehensive documentation:
+
+| # | Milestone | Duration | Status | Focus | File |
+|---|-----------|----------|--------|-------|------|
+| 1 | WebView UI & Pages | 1-2w | ✅ Done | UI/UX, Monorepo, Design System | `.github/copilot-instructions1.md` |
+| 2 | Firebase & Backend | 4-6w | ▶️ Next | Authentication, Firestore, CRUD | `.github/copilot-instructions2.md` |
+| 3 | Advanced Features | 3-4w | 📋 Planned | Analytics, Receipts, Mobile Bridge | `.github/copilot-instructions3.md` |
+| 4 | Premium Features | 3-4w | 📋 Planned | Shared Budgets, AI, Integrations | `.github/copilot-instructions4.md` |
+| 5 | Deployment & Launch | 2-3w | 📋 Planned | App Stores, Monitoring, Go-Live | `.github/copilot-instructions5.md` |
+
+### Each Milestone Contains:
+- **Detailed task breakdown** (5-50+ specific tasks)
+- **Code examples** for complex implementations
+- **File structure updates** showing what to create
+- **Dependencies** to install
+- **Testing checklist**
+- **Handoff notes** for next developer
+- **Completion criteria**
+
+### How to Use
+1. **Finding your milestone:** Check status column above
+2. **Reading details:** Open the corresponding `.md` file in `.github/`
+3. **Understanding tasks:** Each milestone has Phase 1, 2, 3... with numbered items
+4. **Tracking progress:** Use the completion checklist in each file
+5. **Moving forward:** Only start next milestone when current is 100% complete
+
+### Master Documentation
+- **`.github/ROADMAP.md`** - High-level overview and quick reference
+- **`.github/copilot-instructions.md`** - Architecture patterns and conventions
+- **`PROJECT_PLAN.md`** - This file (overall project vision)
+
+---
+
 ## 📞 SUPPORT & QUESTIONS
 
 For questions or clarifications:
-1. Check the documentation
-2. Review component examples
-3. Check existing GitHub issues
-4. Create new issue with context
+1. **Check:** Relevant milestone documentation
+2. **Review:** Code examples in instruction files
+3. **Search:** GitHub issues for similar problems
+4. **Create:** New issue with context and milestone tag
+5. **Reference:** `.github/ROADMAP.md` for quick answers
+
+### Common Questions
+- **"What should I work on next?"** → Check milestone status table, open next milestone file
+- **"How do I implement X?"** → Search corresponding milestone file for task details
+- **"What was built in M1?"** → Read `.github/copilot-instructions1.md`
+- **"Where are the tests?"** → Each milestone has testing section with file locations
+- **"How do I deploy?"** → See `.github/copilot-instructions5.md` (Milestone 5)
 
 ---
 
 **Last Updated:** December 15, 2025  
-**Version:** 1.0  
-**Author:** Development Team
+**Version:** 2.0 (Updated with complete milestone structure)  
+**Author:** Development Team  
+**Repository:** https://github.com/akthakur4744/FundTrack

@@ -1,8 +1,5 @@
-// Firebase hooks will be implemented here
-export const useAuth = () => {
-  // Placeholder
-  return { user: null, loading: true };
-};
+// Re-export all Firebase hooks
+export { useAuth, type UseAuthReturn } from './useAuth';
 
 export const useExpenses = () => {
   // Placeholder

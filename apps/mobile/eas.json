@@ -1,0 +1,23 @@
+{
+  "builds": [
+    {
+      "build": "eas-build",
+      "cli": {
+        "version": ">= 5.0.0"
+      }
+    }
+  ],
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "your-apple-id",
+        "appleTeamId": "your-team-id",
+        "ascAppId": "your-asc-app-id"
+      },
+      "android": {
+        "serviceAccount": "path/to/service-account.json",
+        "track": "internal"
+      }
+    }
+  }
+}

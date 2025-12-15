@@ -1,0 +1,19 @@
+{
+  "name": "@fundtrack/shared",
+  "version": "0.1.0",
+  "description": "Shared types, constants, schemas, and utilities for FundTrack",
+  "private": true,
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "lint": "eslint . --ext .ts,.tsx",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "^3.23.0",
+    "date-fns": "^3.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@fundtrack/firebase",
+  "version": "0.1.0",
+  "description": "Firebase configuration, hooks, and services for FundTrack",
+  "private": true,
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "lint": "eslint . --ext .ts,.tsx",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "firebase": "^10.7.0",
+    "@tanstack/react-query": "^5.28.0",
+    "zod": "^3.23.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0"
+  }
+}

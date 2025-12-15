@@ -1,0 +1,43 @@
+{
+  "name": "fundtrack-webview",
+  "version": "0.1.0",
+  "description": "FundTrack WebView - Next.js app served in React Native WebView",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next": "^15.0.0",
+    "@reduxjs/toolkit": "^2.0.0",
+    "react-redux": "^9.0.0",
+    "@tanstack/react-query": "^5.28.0",
+    "zod": "^3.23.0",
+    "react-hook-form": "^7.52.0",
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0",
+    "clsx": "^2.1.0",
+    "date-fns": "^3.0.0",
+    "@fundtrack/ui": "*",
+    "@fundtrack/shared": "*",
+    "@fundtrack/firebase": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^8.55.0",
+    "eslint-config-next": "^15.0.0",
+    "prettier": "^3.1.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0"
+  }
+}

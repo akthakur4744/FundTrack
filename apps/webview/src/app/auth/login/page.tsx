@@ -26,27 +26,33 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="w-full max-w-md">
-        <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8">
+    <div className="min-h-screen flex items-center justify-center bg-[#0f0a1a] relative overflow-hidden">
+      {/* Gradient Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/3 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl opacity-30"></div>
+        <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-[#d4af37]/10 rounded-full blur-3xl opacity-20"></div>
+      </div>
+
+      <div className="w-full max-w-md relative z-10 px-4">
+        <div className="card border border-purple-500/30">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            <h1 className="text-4xl font-bold text-white mb-2">
               💰 FundTrack
             </h1>
-            <p className="text-gray-600 dark:text-gray-400">
-              Track your expenses, manage budgets, and gain financial insights
+            <p className="text-[#b0afc0]">
+              Your premium expense companion
             </p>
           </div>
 
           {error && (
-            <div className="mb-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400 text-sm">
+            <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm">
               {error}
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label htmlFor="email" className="block text-sm font-semibold text-white mb-2">
                 Email
               </label>
               <input
@@ -61,7 +67,7 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label htmlFor="password" className="block text-sm font-semibold text-white mb-2">
                 Password
               </label>
               <input
@@ -84,32 +90,32 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <div className="mt-6 space-y-3">
-            <button className="w-full flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+          <div className="mt-8 space-y-3">
+            <button className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-[#2d1f45]/50 border border-[#3d2e5f] rounded-xl hover:border-purple-500/50 transition-all">
               <span className="text-xl">🔵</span>
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <span className="text-sm font-semibold text-white">
                 Sign in with Google
               </span>
             </button>
 
-            <button className="w-full flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            <button className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-[#2d1f45]/50 border border-[#3d2e5f] rounded-xl hover:border-purple-500/50 transition-all">
               <span className="text-xl">🍎</span>
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <span className="text-sm font-semibold text-white">
                 Sign in with Apple
               </span>
             </button>
           </div>
 
-          <div className="mt-6 text-center space-y-2">
+          <div className="mt-8 text-center space-y-3">
             <Link
               href="/auth/forgot-password"
-              className="text-sm text-blue-600 dark:text-blue-400 hover:underline block"
+              className="text-sm text-[#d4af37] hover:text-[#f4d46a] transition-colors block"
             >
               Forgot your password?
             </Link>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-[#b0afc0]">
               Don't have an account?{' '}
-              <Link href="/auth/signup" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/auth/signup" className="text-[#d4af37] hover:text-[#f4d46a] transition-colors font-semibold">
                 Sign up
               </Link>
             </p>

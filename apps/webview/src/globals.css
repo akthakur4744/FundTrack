@@ -2,30 +2,100 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Nykaa-inspired Luxury Theme */
+:root {
+  --primary: #8b5cf6;      /* Deep Purple */
+  --primary-dark: #6d28d9;
+  --accent: #d4af37;       /* Gold */
+  --accent-light: #f4d46a;
+  --bg-primary: #0f0a1a;   /* Deep Dark */
+  --bg-secondary: #1a1428;
+  --bg-tertiary: #2d1f45;
+  --text-primary: #f5f5f5;
+  --text-secondary: #b0afc0;
+  --border-color: #3d2e5f;
+}
+
 @layer base {
   html {
     @apply scroll-smooth;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[#0f0a1a] text-[#f5f5f5] font-['Inter',sans-serif];
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
   }
 }
 
 @layer components {
+  /* Primary Button - Gradient Purple to Gold */
   .btn-primary {
-    @apply px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors;
+    @apply px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-500 
+           text-white font-semibold rounded-xl hover:from-purple-700 hover:to-purple-600 
+           transition-all duration-300 shadow-lg hover:shadow-purple-500/50 
+           active:scale-95 border border-purple-400/20;
   }
 
+  /* Secondary Button - Gold Accent */
   .btn-secondary {
-    @apply px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors;
+    @apply px-6 py-3 bg-[#d4af37]/10 text-[#d4af37] font-semibold rounded-xl 
+           hover:bg-[#d4af37]/20 transition-all duration-300 
+           border border-[#d4af37]/50;
   }
 
+  /* Card Component - Luxurious Dark Card */
   .card {
-    @apply bg-white dark:bg-gray-900 rounded-lg shadow-md p-4;
+    @apply bg-[#1a1428] rounded-2xl shadow-xl p-6 
+           border border-[#3d2e5f]/50 
+           hover:border-purple-500/30 transition-all duration-300
+           backdrop-blur-sm;
   }
 
+  /* Input Field - Dark Elegant */
   .input-field {
-    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700;
+    @apply w-full px-4 py-3 bg-[#2d1f45] text-[#f5f5f5] 
+           border border-[#3d2e5f] rounded-xl 
+           focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30
+           transition-all duration-300 placeholder-[#b0afc0];
+  }
+
+  /* Gradient Text - Gold Accent */
+  .text-gradient {
+    @apply bg-gradient-to-r from-purple-400 to-[#d4af37] bg-clip-text text-transparent;
+  }
+
+  /* Premium Badge */
+  .badge-premium {
+    @apply inline-block px-3 py-1 bg-gradient-to-r from-[#d4af37] to-yellow-400 
+           text-black text-xs font-bold rounded-full;
+  }
+
+  /* Glow Effect */
+  .glow-purple {
+    @apply shadow-lg shadow-purple-500/20;
+  }
+
+  .glow-gold {
+    @apply shadow-lg shadow-[#d4af37]/20;
+  }
+
+  /* Navigation Style */
+  .nav-link {
+    @apply text-[#b0afc0] hover:text-[#d4af37] transition-colors duration-300 
+           relative group;
+  }
+
+  .nav-link::after {
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-[#d4af37] 
+           group-hover:w-full transition-all duration-300;
+  }
+
+  /* Stat Card */
+  .stat-card {
+    @apply bg-[#1a1428] rounded-2xl p-6 border border-[#3d2e5f]/50
+           hover:border-[#d4af37]/50 transition-all duration-300;
   }
 }

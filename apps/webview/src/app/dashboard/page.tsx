@@ -22,15 +22,21 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-[#0f0a1a]">
+      {/* Background Gradient Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/2 right-1/4 w-96 h-96 bg-[#d4af37]/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 py-8">
         {/* Header */}
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex justify-between items-center mb-12">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+            <h1 className="text-4xl font-bold text-white mb-2">
               Hi, John! 👋
             </h1>
-            <p className="text-gray-600 dark:text-gray-400">Here's your financial overview</p>
+            <p className="text-[#b0afc0] text-lg">Here's your financial overview</p>
           </div>
           <Link
             href="/expenses/new"
@@ -40,64 +46,74 @@ export default function DashboardPage() {
           </Link>
         </div>
 
-        {/* Balance Card */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="card bg-gradient-to-br from-blue-500 to-blue-600 text-white">
-            <p className="text-sm opacity-90 mb-1">Balance</p>
-            <h2 className="text-3xl font-bold">${balance.toFixed(2)}</h2>
-            <p className="text-xs opacity-75 mt-2">Account Balance</p>
+        {/* Balance Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          {/* Total Balance */}
+          <div className="card bg-gradient-to-br from-purple-600/30 to-purple-400/10 border-purple-500/30 group hover:border-purple-500/60 transition-all">
+            <p className="text-[#b0afc0] text-sm font-medium mb-2">Total Balance</p>
+            <h2 className="text-4xl font-bold text-white mb-2">${balance.toFixed(2)}</h2>
+            <p className="text-[#d4af37] text-sm">✓ Account Balance</p>
           </div>
 
-          <div className="card bg-gradient-to-br from-green-500 to-green-600 text-white">
-            <p className="text-sm opacity-90 mb-1">Budget Used</p>
-            <h2 className="text-3xl font-bold">${spent.toFixed(2)} / ${monthlyBudget}</h2>
-            <p className="text-xs opacity-75 mt-2">{Math.round((spent / monthlyBudget) * 100)}% of monthly budget</p>
+          {/* Budget Status */}
+          <div className="card bg-gradient-to-br from-purple-500/30 to-purple-400/10 border-[#d4af37]/30 group hover:border-[#d4af37]/60 transition-all">
+            <p className="text-[#b0afc0] text-sm font-medium mb-2">Budget Used</p>
+            <h2 className="text-4xl font-bold text-white mb-2">${spent.toFixed(2)} / ${monthlyBudget}</h2>
+            <div className="w-full bg-[#2d1f45] rounded-full h-2 overflow-hidden">
+              <div
+                className="h-full bg-gradient-to-r from-purple-500 to-[#d4af37]"
+                style={{ width: `${Math.round((spent / monthlyBudget) * 100)}%` }}
+              ></div>
+            </div>
+            <p className="text-[#d4af37] text-sm mt-2">{Math.round((spent / monthlyBudget) * 100)}% of monthly</p>
           </div>
 
-          <div className="card bg-gradient-to-br from-purple-500 to-purple-600 text-white">
-            <p className="text-sm opacity-90 mb-1">Spent Today</p>
-            <h2 className="text-3xl font-bold">${spentToday.toFixed(2)}</h2>
-            <p className="text-xs opacity-75 mt-2">Daily spending</p>
+          {/* Spent Today */}
+          <div className="card bg-gradient-to-br from-purple-600/30 to-[#d4af37]/5 border-[#d4af37]/30 group hover:border-[#d4af37]/60 transition-all">
+            <p className="text-[#b0afc0] text-sm font-medium mb-2">Spent Today</p>
+            <h2 className="text-4xl font-bold text-white mb-2">${spentToday.toFixed(2)}</h2>
+            <p className="text-[#d4af37] text-sm">📊 Daily spending</p>
           </div>
         </div>
 
+        {/* Recent Transactions & Budget Overview */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Recent Transactions */}
           <div className="lg:col-span-2">
             <div className="card">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-2xl font-bold text-white">
                   Recent Transactions
                 </h3>
                 <Link
                   href="/expenses"
-                  className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-[#d4af37] hover:text-[#f4d46a] transition-colors"
                 >
                   View All →
                 </Link>
               </div>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {recentTransactions.map((transaction) => (
                   <div
                     key={transaction.id}
-                    className="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                    className="flex justify-between items-center p-4 bg-[#2d1f45]/50 hover:bg-[#2d1f45] border border-[#3d2e5f]/50 rounded-xl transition-all"
                   >
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl">{transaction.icon}</span>
+                    <div className="flex items-center gap-4">
+                      <span className="text-3xl">{transaction.icon}</span>
                       <div>
-                        <p className="font-medium text-gray-900 dark:text-white">
+                        <p className="font-semibold text-white">
                           {transaction.name}
                         </p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                        <p className="text-sm text-[#b0afc0]">
                           {transaction.time}
                         </p>
                       </div>
                     </div>
                     <p
-                      className={`font-semibold ${
+                      className={`font-bold text-lg ${
                         transaction.amount < 0
-                          ? 'text-red-600 dark:text-red-400'
-                          : 'text-green-600 dark:text-green-400'
+                          ? 'text-red-400'
+                          : 'text-green-400'
                       }`}
                     >
                       {transaction.amount < 0 ? '-' : '+'}${Math.abs(transaction.amount).toFixed(2)}
@@ -111,37 +127,51 @@ export default function DashboardPage() {
           {/* Budget Overview */}
           <div>
             <div className="card">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              <h3 className="text-2xl font-bold text-white mb-6">
                 Budget Overview
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {budgets.map((budget) => (
                   <div key={budget.category}>
-                    <div className="flex justify-between mb-1">
-                      <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <div className="flex justify-between mb-2">
+                      <p className="text-sm font-semibold text-white">
                         {budget.category}
                       </p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <p className={`text-sm font-bold ${
+                        budget.percentage > 100
+                          ? 'text-red-400'
+                          : budget.percentage > 80
+                            ? 'text-yellow-400'
+                            : 'text-green-400'
+                      }`}>
                         {budget.percentage}%
                       </p>
                     </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                    <div className="w-full bg-[#2d1f45] rounded-full h-3 overflow-hidden border border-[#3d2e5f]">
                       <div
                         className={`h-full ${
                           budget.percentage > 100
-                            ? 'bg-red-500'
+                            ? 'bg-gradient-to-r from-red-500 to-red-400'
                             : budget.percentage > 80
-                              ? 'bg-yellow-500'
-                              : 'bg-green-500'
+                              ? 'bg-gradient-to-r from-yellow-500 to-yellow-400'
+                              : 'bg-gradient-to-r from-green-500 to-green-400'
                         }`}
                         style={{ width: `${Math.min(budget.percentage, 100)}%` }}
                       />
                     </div>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    <p className="text-xs text-[#b0afc0] mt-2">
                       ${budget.spent} / ${budget.limit}
                     </p>
                   </div>
                 ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
               </div>
               <Link
                 href="/budgets"

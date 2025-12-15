@@ -1,4 +1,4 @@
-import { createSlice, configureStore, PreloadedState } from '@reduxjs/toolkit';
+import { createSlice, configureStore } from '@reduxjs/toolkit';
 
 // Auth slice
 export const authSlice = createSlice({

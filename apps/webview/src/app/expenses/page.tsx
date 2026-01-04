@@ -4,6 +4,9 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useAuth, useExpenses, useCategories, useDeleteExpense } from '@fundtrack/firebase';
 
+// Mark this page as dynamic to prevent static generation
+export const dynamic = 'force-dynamic';
+
 export default function ExpensesPage() {
   const { user } = useAuth();
   const [selectedCategory, setSelectedCategory] = useState('all');

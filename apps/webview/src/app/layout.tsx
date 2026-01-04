@@ -1,5 +1,9 @@
 import type { Metadata } from 'next';
 import '../globals.css';
+import { Providers } from './providers';
+
+// Mark app as dynamic to prevent static generation issues with Firebase
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'FundTrack - Expense Tracking',
@@ -20,7 +24,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="min-h-screen">{children}</main>
+        <Providers>
+          <main className="min-h-screen">{children}</main>
+        </Providers>
       </body>
     </html>
   );

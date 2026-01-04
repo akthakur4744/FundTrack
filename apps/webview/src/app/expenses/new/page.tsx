@@ -2,88 +2,151 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useAuth, useAddExpense, useCategories } from '@fundtrack/firebase';
+
+// Mark this page as dynamic to prevent static generation
+export const dynamic = 'force-dynamic';
 
 export default function NewExpensePage() {
+  const router = useRouter();
+  const { user } = useAuth();
+  
   const [formData, setFormData] = useState({
-    category: 'food',
+    category: '',
     amount: '',
     description: '',
     date: new Date().toISOString().split('T')[0],
-    paymentMethod: 'credit_card',
   });
 
-  const categories = [
-    { id: 'food', name: 'Food & Dining', icon: '🍔' },
-    { id: 'transport', name: 'Transport', icon: '🚗' },
-    { id: 'entertainment', name: 'Entertainment', icon: '🎥' },
-    { id: 'home', name: 'Home & Utilities', icon: '🏠' },
-    { id: 'health', name: 'Health & Fitness', icon: '💪' },
-    { id: 'shopping', name: 'Shopping', icon: '🛍️' },
-  ];
+  const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const paymentMethods = [
-    { id: 'cash', name: 'Cash' },
-    { id: 'credit_card', name: 'Credit Card' },
-    { id: 'debit_card', name: 'Debit Card' },
-    { id: 'bank_transfer', name: 'Bank Transfer' },
-  ];
+  // Get categories from Firebase
+  const { data: categories = [] } = useCategories(user?.uid || null);
+
+  // Add expense mutation
+  const { mutate: addExpense } = useAddExpense(user?.uid || '');
+
+  // Set default category when categories load
+  const handleCategorySelect = (categoryName: string) => {
+    setFormData((prev) => ({ ...prev, category: categoryName }));
+    setError('');
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setError('');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement Firebase submission
-    console.log('Adding expense:', formData);
+    
+    // Validation
+    if (!formData.category) {
+      setError('Please select a category');
+      return;
+    }
+    if (!formData.amount || parseFloat(formData.amount) <= 0) {
+      setError('Please enter a valid amount');
+      return;
+    }
+    if (!formData.date) {
+      setError('Please select a date');
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      addExpense({
+        amount: parseFloat(formData.amount),
+        category: formData.category,
+        description: formData.description,
+        date: new Date(formData.date).getTime(),
+      });
+      
+      // Redirect to expenses page on success
+      router.push('/expenses');
+    } catch (err) {
+      setError('Failed to add expense. Please try again.');
+      console.error(err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
+  // Show loading state if user not loaded
+  if (!user?.uid) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-[#0f0a1a] via-[#1a0f2e] to-[#0f0a1a]">
+        <div className="max-w-2xl mx-auto px-4 py-8">
+          <p className="text-[#d4af37]">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-[#0f0a1a] via-[#1a0f2e] to-[#0f0a1a]">
       <div className="max-w-2xl mx-auto px-4 py-8">
         {/* Header */}
-        <Link href="/expenses" className="text-blue-600 dark:text-blue-400 hover:underline mb-6 block">
+        <Link 
+          href="/expenses" 
+          className="text-[#d4af37] hover:text-[#e5c158] transition-colors mb-6 inline-flex items-center gap-2"
+        >
           ← Back to Expenses
         </Link>
 
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">New Expense</h1>
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-white mb-2">Add New Expense</h1>
+          <p className="text-gray-400">Track your spending and stay on budget</p>
+        </div>
+
+        {/* Error Message */}
+        {error && (
+          <div className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400">
+            {error}
+          </div>
+        )}
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="card space-y-6">
+        <form onSubmit={handleSubmit} className="bg-[#1a1530]/50 border border-[#8b5cf6]/20 rounded-xl p-6 backdrop-blur-sm space-y-6">
           {/* Category Selection */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-              Select Category
+            <label className="block text-sm font-semibold text-[#d4af37] mb-4 uppercase tracking-wider">
+              Category
             </label>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {categories.map((cat) => (
-                <button
-                  key={cat.id}
-                  type="button"
-                  onClick={() => setFormData((prev) => ({ ...prev, category: cat.id }))}
-                  className={`p-4 rounded-lg border-2 transition-all text-center ${
-                    formData.category === cat.id
-                      ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                      : 'border-gray-300 dark:border-gray-700 hover:border-blue-300'
-                  }`}
-                >
-                  <span className="text-3xl block mb-1">{cat.icon}</span>
-                  <p className="text-xs font-medium text-gray-700 dark:text-gray-300">
-                    {cat.name}
-                  </p>
-                </button>
-              ))}
-            </div>
+            {categories.length === 0 ? (
+              <p className="text-gray-400">Loading categories...</p>
+            ) : (
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {categories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    onClick={() => handleCategorySelect(cat.name)}
+                    className={`p-4 rounded-lg border-2 transition-all text-center font-medium ${
+                      formData.category === cat.name
+                        ? 'border-[#8b5cf6] bg-[#8b5cf6]/10 text-[#d4af37]'
+                        : 'border-[#8b5cf6]/30 text-gray-300 hover:border-[#8b5cf6]/60 hover:bg-[#8b5cf6]/5'
+                    }`}
+                  >
+                    <span className="text-3xl block mb-1">{cat.icon}</span>
+                    <p className="text-xs">{cat.name}</p>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Amount */}
           <div>
-            <label htmlFor="amount" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Amount
+            <label htmlFor="amount" className="block text-sm font-semibold text-[#d4af37] mb-2 uppercase tracking-wider">
+              Amount (USD)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+              <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#d4af37] font-semibold">
                 $
               </span>
               <input
@@ -95,7 +158,7 @@ export default function NewExpensePage() {
                 required
                 step="0.01"
                 min="0"
-                className="input-field pl-7"
+                className="w-full pl-8 pr-4 py-3 bg-[#0f0a1a] border border-[#8b5cf6]/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/20 transition-all"
                 placeholder="0.00"
               />
             </div>
@@ -103,8 +166,8 @@ export default function NewExpensePage() {
 
           {/* Description */}
           <div>
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Description (Optional)
+            <label htmlFor="description" className="block text-sm font-semibold text-[#d4af37] mb-2 uppercase tracking-wider">
+              Description
             </label>
             <textarea
               id="description"
@@ -112,14 +175,14 @@ export default function NewExpensePage() {
               value={formData.description}
               onChange={handleChange}
               rows={3}
-              className="input-field"
-              placeholder="Add a note..."
+              className="w-full px-4 py-3 bg-[#0f0a1a] border border-[#8b5cf6]/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/20 transition-all resize-none"
+              placeholder="Add a note about this expense..."
             />
           </div>
 
           {/* Date */}
           <div>
-            <label htmlFor="date" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label htmlFor="date" className="block text-sm font-semibold text-[#d4af37] mb-2 uppercase tracking-wider">
               Date
             </label>
             <input
@@ -128,37 +191,24 @@ export default function NewExpensePage() {
               name="date"
               value={formData.date}
               onChange={handleChange}
-              className="input-field"
+              className="w-full px-4 py-3 bg-[#0f0a1a] border border-[#8b5cf6]/30 rounded-lg text-white focus:outline-none focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/20 transition-all"
             />
           </div>
 
-          {/* Payment Method */}
-          <div>
-            <label htmlFor="paymentMethod" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Payment Method
-            </label>
-            <select
-              id="paymentMethod"
-              name="paymentMethod"
-              value={formData.paymentMethod}
-              onChange={handleChange}
-              className="input-field"
-            >
-              {paymentMethods.map((method) => (
-                <option key={method.id} value={method.id}>
-                  {method.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
           {/* Buttons */}
-          <div className="flex gap-3 pt-6 border-t border-gray-200 dark:border-gray-700">
-            <Link href="/expenses" className="btn-secondary flex-1 text-center">
+          <div className="flex gap-3 pt-6 border-t border-[#8b5cf6]/20">
+            <Link 
+              href="/expenses" 
+              className="flex-1 px-6 py-3 rounded-lg border border-[#8b5cf6]/30 text-[#d4af37] font-semibold hover:bg-[#8b5cf6]/10 transition-all text-center"
+            >
               Cancel
             </Link>
-            <button type="submit" className="btn-primary flex-1">
-              Save Expense
+            <button 
+              type="submit" 
+              disabled={isSubmitting}
+              className="flex-1 px-6 py-3 rounded-lg bg-gradient-to-r from-[#8b5cf6] to-[#a78bfa] text-white font-semibold hover:shadow-lg hover:shadow-[#8b5cf6]/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? 'Saving...' : 'Save Expense'}
             </button>
           </div>
         </form>

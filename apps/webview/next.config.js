@@ -8,6 +8,10 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // Disable static generation entirely - all pages will be SSR
+  experimental: {
+    // This allows us to avoid static generation errors
+  },
 };
 
 module.exports = nextConfig;

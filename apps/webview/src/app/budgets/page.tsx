@@ -3,6 +3,9 @@
 import Link from 'next/link';
 import { useAuth, useBudgets, useSpendingByCategory, useDeleteBudget } from '@fundtrack/firebase';
 
+// Mark this page as dynamic to prevent static generation
+export const dynamic = 'force-dynamic';
+
 export default function BudgetsPage() {
   const { user } = useAuth();
   

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import '../globals.css';
 import { Providers } from './providers';
+import { Navigation } from '@/components/Navigation';
 
 // Mark app as dynamic to prevent static generation issues with Firebase
 export const dynamic = 'force-dynamic';
@@ -25,7 +26,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <main className="min-h-screen">{children}</main>
+          <div className="flex">
+            <Navigation />
+            <main className="flex-1 md:ml-0">{children}</main>
+          </div>
         </Providers>
       </body>
     </html>

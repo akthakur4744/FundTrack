@@ -1,12 +1,35 @@
-// Re-export all Firebase hooks
+// Auth hooks
 export { useAuth, type UseAuthReturn } from './useAuth';
 
-export const useExpenses = () => {
-  // Placeholder
-  return { data: [], isLoading: true };
-};
+// Expenses hooks
+export {
+  useExpenses,
+  useExpensesByDateRange,
+  useExpensesByCategory,
+  useTotalSpending,
+  useSpendingByCategory,
+  useAddExpense,
+  useUpdateExpense,
+  useDeleteExpense,
+} from './useExpenses';
 
-export const useBudgets = () => {
-  // Placeholder
-  return { data: [], isLoading: true };
-};
+// Budgets hooks
+export {
+  useBudgets,
+  useBudgetByCategory,
+  useIsBudgetExceeded,
+  useBudgetProgress,
+  useAddBudget,
+  useUpdateBudget,
+  useDeleteBudget,
+} from './useBudgets';
+
+// Categories hooks
+export {
+  useCategories,
+  useCategoryByName,
+  useInitializeDefaultCategories,
+  useAddCategory,
+  useUpdateCategory,
+  useDeleteCategory,
+} from './useCategories';

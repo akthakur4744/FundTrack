@@ -19,3 +19,6 @@ export {
 
 // Re-export all Firebase hooks
 export * from './hooks';
+
+// Re-export all Firestore services
+export * from './services';

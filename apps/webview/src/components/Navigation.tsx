@@ -98,6 +98,13 @@ export function Navigation() {
               >
                 ⚙️ Settings
               </Link>
+              <Link
+                href="/profile"
+                className="flex items-center gap-2 px-4 py-3 text-[#b0afc0] hover:bg-white/5 transition-colors"
+                onClick={() => setShowUserMenu(false)}
+              >
+                👤 Profile
+              </Link>
               <button
                 onClick={handleLogout}
                 className="w-full flex items-center gap-2 px-4 py-3 text-red-400 hover:bg-red-500/10 transition-colors border-t border-purple-500/20"
@@ -154,6 +161,13 @@ export function Navigation() {
                 >
                   ⚙️ Settings
                 </Link>
+                <Link
+                  href="/profile"
+                  className="block px-4 py-3 text-[#b0afc0] hover:bg-white/5 transition-colors"
+                  onClick={() => setShowUserMenu(false)}
+                >
+                  👤 Profile
+                </Link>
                 <button
                   onClick={handleLogout}
                   className="w-full text-left px-4 py-3 text-red-400 hover:bg-red-500/10 transition-colors border-t border-purple-500/20"
@@ -165,12 +179,6 @@ export function Navigation() {
           </div>
         </div>
       </nav>
-
-      {/* Mobile Bottom Navigation Spacer */}
-      <div className="md:hidden h-24"></div>
-
-      {/* Desktop Sidebar Spacer */}
-      <div className="hidden md:block w-64"></div>
     </>
   );
 }

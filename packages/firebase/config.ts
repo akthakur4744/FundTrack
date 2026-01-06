@@ -14,6 +14,22 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
+// Validate Firebase config has required values
+const isFirebaseConfigValid = () => {
+  return !!(
+    firebaseConfig.apiKey &&
+    firebaseConfig.authDomain &&
+    firebaseConfig.projectId &&
+    firebaseConfig.appId
+  );
+};
+
+if (!isFirebaseConfigValid()) {
+  if (typeof window !== 'undefined') {
+    console.error('Firebase configuration is missing or invalid. Please check your environment variables.');
+  }
+}
+
 // Initialize Firebase (prevent multiple initializations)
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 

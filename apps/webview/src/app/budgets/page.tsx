@@ -99,9 +99,17 @@ export default function BudgetsPage() {
                   <button
                     onClick={() => deleteBudget(budget.id)}
                     className="text-[#b0afc0] hover:text-red-400 transition-colors"
+                    title="Delete"
                   >
                     ✕
                   </button>
+                  <Link
+                    href={`/budgets/${budget.id}/edit`}
+                    className="text-[#8b5cf6] hover:text-[#d4af37] transition-colors"
+                    title="Edit"
+                  >
+                    ✎
+                  </Link>
                 </div>
 
                 {/* Progress Bar */}

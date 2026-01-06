@@ -304,6 +304,13 @@ export default function CategoriesPage() {
                   >
                     Delete
                   </button>
+                  <Link
+                    href={`/categories/${category.id}/edit`}
+                    className="px-3 py-1 rounded-lg bg-[#8b5cf6]/20 border border-[#8b5cf6]/30 text-[#d4af37] text-sm font-medium hover:bg-[#8b5cf6]/30 transition-all opacity-0 group-hover:opacity-100"
+                    title="Edit category"
+                  >
+                    Edit
+                  </Link>
                 </div>
               ))}
             </div>

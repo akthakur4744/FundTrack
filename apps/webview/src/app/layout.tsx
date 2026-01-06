@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import '../globals.css';
 import { Providers } from './providers';
 import { Navigation } from '@/components/Navigation';
@@ -6,15 +6,16 @@ import { Navigation } from '@/components/Navigation';
 // Mark app as dynamic to prevent static generation issues with Firebase
 export const dynamic = 'force-dynamic';
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1.0,
+  maximumScale: 1.0,
+  userScalable: false,
+};
+
 export const metadata: Metadata = {
   title: 'FundTrack - Expense Tracking',
   description: 'Track your expenses, manage budgets, and gain financial insights',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1.0,
-    maximumScale: 1.0,
-    userScalable: false,
-  },
 };
 
 export default function RootLayout({
@@ -24,12 +25,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-[#0f0a1a]">
         <Providers>
-          <div className="flex">
-            <Navigation />
-            <main className="flex-1 md:ml-0">{children}</main>
-          </div>
+          <Navigation />
+          <main className="pb-24 md:pb-0 md:ml-64">{children}</main>
         </Providers>
       </body>
     </html>

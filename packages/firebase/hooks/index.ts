@@ -33,3 +33,10 @@ export {
   useUpdateCategory,
   useDeleteCategory,
 } from './useCategories';
+
+// Receipt hooks
+export {
+  useUploadReceipt,
+  useReceiptURLs,
+  useDeleteReceipt,
+} from './useReceipts';

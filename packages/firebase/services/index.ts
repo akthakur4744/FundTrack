@@ -58,3 +58,11 @@ export {
   type UserPreferences,
   type CreateUserProfileInput,
 } from './users';
+
+// Storage
+export {
+  uploadReceipt,
+  getReceiptURLs,
+  deleteReceipt,
+  deleteAllReceipts,
+} from './storage';

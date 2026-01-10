@@ -17,6 +17,7 @@ export function Navigation() {
     { href: '/expenses', label: 'Expenses', icon: '💰' },
     { href: '/recurring', label: 'Recurring', icon: '🔄' },
     { href: '/budgets', label: 'Budgets', icon: '💳' },
+    { href: '/shared', label: 'Shared', icon: '👥' },
     { href: '/categories', label: 'Categories', icon: '📁' },
     { href: '/reports', label: 'Reports', icon: '📈' },
   ];

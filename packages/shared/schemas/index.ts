@@ -35,3 +35,35 @@ export const userPreferencesSchema = z.object({
 });
 
 export type UserPreferences = z.infer<typeof userPreferencesSchema>;
+
+// Export shared budget schemas and utilities
+export {
+  splittingMethodSchema,
+  memberRoleSchema,
+  memberStatusSchema,
+  settlementStatusSchema,
+  baseSharedExpenseSchema,
+  sharedExpenseCreateSchema,
+  sharedExpenseUpdateSchema,
+  baseSharedBudgetSchema,
+  sharedBudgetCreateSchema,
+  sharedBudgetUpdateSchema,
+  sharedBudgetInviteSchema,
+  recordSettlementSchema,
+  type SharedExpenseCreate,
+  type SharedExpenseUpdate,
+  type SharedBudgetCreate,
+  type SharedBudgetUpdate,
+  type RecordSettlement,
+  SPLITTING_METHOD_LABELS,
+  SPLITTING_METHOD_DESCRIPTIONS,
+  MEMBER_ROLE_LABELS,
+  MEMBER_ROLE_DESCRIPTIONS,
+  MEMBER_STATUS_LABELS,
+  getSplittingMethodLabel,
+  getMemberStatusLabel,
+  getMemberRoleLabel,
+  calculateEqualSplit,
+  validateSplitsSum,
+  validateItemizedSplitsSum,
+} from './sharedBudgetSchema';

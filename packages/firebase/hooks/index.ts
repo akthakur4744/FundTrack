@@ -51,3 +51,25 @@ export {
   useDeleteRecurringExpenseHard,
   useUpdateRecurringExpense,
 } from './useRecurring';
+
+// Shared Budgets hooks
+export {
+  useCreateSharedBudget,
+  useSharedBudgets,
+  useSharedBudgetById,
+  useUpdateSharedBudget,
+  useDeleteSharedBudget,
+  useSharedBudgetMembers,
+  useInviteMembers,
+  useAcceptInvite,
+  useRemoveMember,
+  useSharedExpenses,
+  useSharedExpensesByMember,
+  useAddSharedExpense,
+  useUpdateSharedExpense,
+  useDeleteSharedExpense,
+  useBalances,
+  useSettlementSuggestions,
+  useSettlementHistory,
+  useRecordSettlement,
+} from './useSharedBudgets';

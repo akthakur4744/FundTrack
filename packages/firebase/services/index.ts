@@ -66,3 +66,14 @@ export {
   deleteReceipt,
   deleteAllReceipts,
 } from './storage';
+
+// Recurring Expenses
+export {
+  createRecurringExpense,
+  getRecurringExpenses,
+  getRecurringExpenseById,
+  getRecurringInstances,
+  deleteRecurringExpense,
+  deleteRecurringExpenseHard,
+  updateRecurringExpense,
+} from './recurring';

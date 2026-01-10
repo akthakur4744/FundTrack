@@ -40,3 +40,14 @@ export {
   useReceiptURLs,
   useDeleteReceipt,
 } from './useReceipts';
+
+// Recurring Expenses hooks
+export {
+  useCreateRecurringExpense,
+  useRecurringExpenses,
+  useRecurringExpenseById,
+  useRecurringInstances,
+  useDeleteRecurringExpense,
+  useDeleteRecurringExpenseHard,
+  useUpdateRecurringExpense,
+} from './useRecurring';

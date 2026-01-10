@@ -1,4 +1,5 @@
-import { z } from 'zod';
+// Frequency enum for recurring expenses
+export type Frequency = 'daily' | 'weekly' | 'monthly' | 'yearly';
 
 // Expense type
 export interface Expense {
@@ -13,6 +14,31 @@ export interface Expense {
   tags?: string[];
   receiptUrl?: string;
   synced: boolean;
+  // NEW: Link to recurring expense
+  recurringExpenseId?: string;
+  isRecurringInstance?: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// Recurring Expense type
+export interface RecurringExpense {
+  id: string;
+  userId: string;
+  description: string;
+  amount: number;
+  currency: string;
+  category: string;
+  frequency: Frequency;
+  startDate: Date;
+  endDate?: Date;
+  // Week-specific: days of week (0 = Sunday, 6 = Saturday)
+  daysOfWeek?: number[];
+  // Month-specific: day of month (1-31)
+  dayOfMonth?: number;
+  // Metadata
+  isActive: boolean;
+  nextInstanceDue: Date;
   createdAt: Date;
   updatedAt: Date;
 }
